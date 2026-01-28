@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPLORE - Portal Berita Petualangan & Eksplorasi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #1A535C;
+            --accent-color: #4ECDC4;
+            --dark-color: #292F36;
+            --light-color: #F7FFF7;
+            --gray-color: #6C757D;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        
+        .header-top-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .date-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .trending-news {
+            flex: 1;
+            margin: 0 30px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .trending-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        .header-main {
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .logo-text h1 {
+            font-size: 32px;
+            color: var(--secondary-color);
+            line-height: 1;
+        }
+        
+        .logo-text span {
+            font-size: 14px;
+            color: var(--gray-color);
+            font-weight: 400;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--dark-color);
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #f1f3f5;
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            width: 180px;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .search-box i {
+            color: var(--gray-color);
+            cursor: pointer;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        
+        .hero-slider {
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-1 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        }
+        
+        .slide-2 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1508166466924-7c6c56df18f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        }
+        
+        .slide-3 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1536152471326-642d746b1683?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        }
+        
+        .slide-content {
+            padding: 60px;
+            color: white;
+            max-width: 800px;
+        }
+        
+        .slide-category {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .slide-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .slide-excerpt {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-dot.active {
+            background-color: white;
+        }
+        
+        /* Categories */
+        .categories {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        
+        .category-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 250px;
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+        
+        .category-name {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        
+        .category-count {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Featured Articles */
+        .featured-articles {
+            margin-bottom: 80px;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .main-article {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .main-article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .main-article-content {
+            padding: 35px;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: var(--gray-color);
+            font-size: 14px;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .main-article-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            line-height: 1.3;
+        }
+        
+        .main-article-excerpt {
+            font-size: 16px;
+            color: var(--gray-color);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-details h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .author-details p {
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+        
+        .sidebar-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .sidebar-article {
+            display: flex;
+            gap: 20px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-article:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .sidebar-article-image {
+            width: 120px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .sidebar-article-content {
+            flex: 1;
+        }
+        
+        .sidebar-article-title {
+            font-size: 17px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .sidebar-article-meta {
+            font-size: 13px;
+            color: var(--gray-color);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .newsletter h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        /* Popular Destinations */
+        .destinations {
+            margin-bottom: 80px;
+        }
+        
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .destination-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            position: relative;
+            height: 350px;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .destination-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .destination-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+        
+        .destination-name {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .destination-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-contact i {
+            color: var(--accent-color);
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header-top {
+                display: none;
+            }
+            
+            .trending-news {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero {
+                height: 500px;
+            }
+            
+            .slide-content {
+                padding: 40px;
+            }
+            
+            .slide-title {
+                font-size: 32px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .search-box input {
+                width: 140px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide-content {
+                padding: 30px;
+            }
+            
+            .slide-title {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .main-article-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-content">
+                <div class="date-info">
+                    <i class="far fa-calendar"></i>
+                    <span>Senin, 25 Maret 2024</span>
+                </div>
+                
+                <div class="trending-news">
+                    <div class="trending-text">
+                        <strong>TRENDING:</strong> Ekspedisi Mendaki Gunung Rinjani Rute Baru Dibuka untuk Umum • Penemuan Spesies Baru di Hutan Amazon • Festival Budaya Adat di Papua Barat
+                    </div>
+                </div>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Main -->
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-mountain logo-icon"></i>
+                        <div class="logo-text">
+                            <h1>EXPLORE</h1>
+                            <span>Portal Berita Petualangan & Eksplorasi</span>
+                        </div>
+                    </div>
+                    
+                    <nav>
+                        <ul>
+                            <li><a href="#" class="active">Beranda</a></li>
+                            <li><a href="#">Petualangan</a></li>
+                            <li><a href="#">Destinasi</a></li>
+                            <li><a href="#">Ekspedisi</a></li>
+                            <li><a href="#">Tips</a></li>
+                            <li><a href="#">Gear</a></li>
+                            <li><a href="#">Video</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <input type="text" placeholder="Cari petualangan...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="mobile-toggle">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero">
+        <div class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="slide slide-1 active">
+                <div class="slide-content">
+                    <span class="slide-category">Ekspedisi</span>
+                    <h2 class="slide-title">Menyusuri Jejak Peradaban Kuno di Situs Karst Maros</h2>
+                    <p class="slide-excerpt">Tim eksplorer menemukan lukisan gua berusia 40.000 tahun di Sulawesi Selatan yang mengungkap kehidupan manusia purba di Nusantara.</p>
+                    <a href="#" class="btn btn-primary">Baca Ekspedisi <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide slide-2">
+                <div class="slide-content">
+                    <span class="slide-category">Petualangan</span>
+                    <h2 class="slide-title">Arung Jeram Ekstrem di Sungai Citarik, Jawa Barat</h2>
+                    <p class="slide-excerpt">Menguji adrenalin dengan arung jeram grade V di salah satu sungai terpanjang di Jawa Barat. Dokumentasi lengkap perjalanan 3 hari.</p>
+                    <a href="#" class="btn btn-primary">Ikuti Petualangan <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide slide-3">
+                <div class="slide-content">
+                    <span class="slide-category">Konservasi</span>
+                    <h2 class="slide-title">Menelusuri Hutan Taman Nasional Gunung Leuser</h2>
+                    <p class="slide-excerpt">Eksplorasi selama 7 hari di habitat orangutan sumatera bersama tim konservasi untuk mendokumentasikan kehidupan satwa langka.</p>
+                    <a href="#" class="btn btn-primary">Jelajahi Hutan <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Slider Navigation -->
+            <div class="slider-nav">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Jelajahi Kategori</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1536152471326-642d746b1683?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gunung" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Pendakian</h3>
+                        <p class="category-count">48 Artikel</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Laut" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Bawah Laut</h3>
+                        <p class="category-count">32 Artikel</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1508166466924-7c6c56df18f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hutan" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Hutan & Rimba</h3>
+                        <p class="category-count">41 Artikel</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" alt="Kultur" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Budaya & Tradisi</h3>
+                        <p class="category-count">27 Artikel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="featured-articles">
+        <div class="container">
+            <h2 class="section-title">Artikel Pilihan</h2>
+            <div class="articles-grid">
+                <article class="main-article">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pendakian Gunung" class="main-article-image">
+                    <div class="main-article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 22 Maret 2024</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                            <span><i class="far fa-eye"></i> 2.4k views</span>
+                        </div>
+                        <h2 class="main-article-title">Pendakian Solo ke Puncak Carstensz: Tantangan dan Persiapan</h2>
+                        <p class="main-article-excerpt">Pengalaman mendaki puncak tertinggi di Indonesia tanpa tim pendukung. Artikel ini mengulas persiapan fisik, mental, perlengkapan, dan rute alternatif yang bisa diambil oleh pendaki solo. Pelajari juga strategi menghadapi cuaca ekstrem dan kondisi medan yang menantang.</p>
+                        <a href="#" class="btn btn-primary">Baca Lengkap</a>
+                        
+                        <div class="author-info">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Author" class="author-avatar">
+                            <div class="author-details">
+                                <h4>Andi Wijaya</h4>
+                                <p>Mountaineer & Explorer</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <div class="sidebar-articles">
+                    <div class="sidebar-article">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Snorkeling" class="sidebar-article-image">
+                        <div class="sidebar-article-content">
+                            <h3 class="sidebar-article-title">Spot Snorkeling Terbaik di Raja Ampat</h3>
+                            <div class="sidebar-article-meta">
+                                <span><i class="far fa-calendar"></i> 20 Mar 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-article">
+                        <img src="https://images.unsplash.com/photo-1536152471326-642d746b1683?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gear" class="sidebar-article-image">
+                        <div class="sidebar-article-content">
+                            <h3 class="sidebar-article-title">Review: Tenda 4 Musim untuk Ekspedisi Ekstrem</h3>
+                            <div class="sidebar-article-meta">
+                                <span><i class="far fa-calendar"></i> 18 Mar 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-article">
+                        <img src="https://images.unsplash.com/photo-1508166466924-7c6c56df18f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Survival" class="sidebar-article-image">
+                        <div class="sidebar-article-content">
+                            <h3 class="sidebar-article-title">Teknik Survival di Hutan Tropis Indonesia</h3>
+                            <div class="sidebar-article-meta">
+                                <span><i class="far fa-calendar"></i> 15 Mar 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-article">
+                        <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" alt="Kultur" class="sidebar-article-image">
+                        <div class="sidebar-article-content">
+                            <h3 class="sidebar-article-title">Eksplorasi Kampung Adat Suku Baduy</h3>
+                            <div class="sidebar-article-meta">
+                                <span><i class="far fa-calendar"></i> 12 Mar 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Bergabung dengan Komunitas Explorer</h2>
+                <p>Dapatkan update petualangan terbaru, tips eksplorasi, dan informasi event langsung di inbox Anda. Gratis untuk para pecinta alam!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Masukkan alamat email Anda" required>
+                    <button type="submit" class="btn btn-outline">Berlangganan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="destinations">
+        <div class="container">
+            <h2 class="section-title">Destinasi Populer</h2>
+            <div class="destinations-grid">
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Bromo" class="destination-image">
+                    <div class="destination-overlay">
+                        <h3 class="destination-name">Gunung Bromo</h3>
+                        <div class="destination-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jawa Timur, Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1526761122241-be2c5c7d8f7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Komodo" class="destination-image">
+                    <div class="destination-overlay">
+                        <h3 class="destination-name">Pulau Komodo</h3>
+                        <div class="destination-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nusa Tenggara Timur, Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Raja Ampat" class="destination-image">
+                    <div class="destination-overlay">
+                        <h3 class="destination-name">Raja Ampat</h3>
+                        <div class="destination-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Papua Barat, Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <h2>EXPL<span>ORE</span></h2>
+                    </div>
+                    <p>Portal berita petualangan dan eksplorasi terkemuka di Indonesia. Menyajikan cerita perjalanan, tips eksplorasi, ulasan gear, dan informasi destinasi terbaik untuk para pecinta alam.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Pendakian Gunung</a></li>
+                        <li><a href="#">Eksplorasi Bawah Laut</a></li>
+                        <li><a href="#">Petualangan Hutan</a></li>
+                        <li><a href="#">Ekspedisi Khusus</a></li>
+                        <li><a href="#">Wisata Budaya</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Menu</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Kontributor</a></li>
+                        <li><a href="#">Event & Ekspedisi</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <ul class="footer-links footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jl. Petualangan No. 123, Jakarta Selatan 12560</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(021) 1234-5678</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>redaksi@explore.co.id</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Senin - Jumat: 09:00 - 17:00 WIB</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 EXPLORE - Portal Berita Petualangan & Eksplorasi. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Hero Slider
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show the selected slide
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+            
+            currentSlide = n;
+        }
+        
+        // Add click event to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetSliderTimer();
+            });
+        });
+        
+        // Auto slide
+        let slideInterval = setInterval(nextSlide, 5000);
+        
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next >= slides.length) {
+                next = 0;
+            }
+            showSlide(next);
+        }
+        
+        function resetSliderTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Terima kasih! Email ${email} telah berhasil didaftarkan untuk menerima update petualangan terbaru dari EXPLORE.`);
+            this.reset();
+        });
+        
+        // Search functionality
+        document.querySelector('.search-box i').addEventListener('click', function() {
+            const query = document.querySelector('.search-box input').value;
+            if(query.trim()) {
+                alert(`Mencari petualangan: "${query}". Di halaman nyata, ini akan mengarahkan ke hasil pencarian.`);
+            }
+        });
+        
+        // Search on enter key
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                document.querySelector('.search-box i').click();
+            }
+        });
+        
+        // Add hover effect to category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.08)';
+            });
+        });
+        
+        // Add current date to header
+        const dateElement = document.querySelector('.date-info span');
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = now.toLocaleDateString('id-ID', options);
+    </script>
+</body>
+</html>
